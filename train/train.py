@@ -1,6 +1,6 @@
 from torch import nn
-from ..datasets.fashion_mnist import get_datasets_and_loaders
-from ..utils.plot_image import plot_generated_images
+from datasets.fashion_mnist import get_datasets_and_loaders
+from utils.plot_image import plot_generated_images
 from models.generator import Generator
 from models.discriminator import Discriminator
 from torch.optim import Adam
@@ -19,7 +19,8 @@ def train(epochs, batch_size, lr, beta_1, beta_2, latent_dim, save_path, example
 
     adversarial_loss = nn.BCELoss()
 
-    dataloader = get_datasets_and_loaders(batch_size)
+    train_loader, _ = get_datasets_and_loaders(batch_size)
+
 
     # Cria o diretório para salvar as imagens geradas, se não existir
     save_path = ROOT_DIR / save_path
@@ -27,7 +28,7 @@ def train(epochs, batch_size, lr, beta_1, beta_2, latent_dim, save_path, example
 
 
     for epoch in range(epochs):
-        for i, (imgs, _) in enumerate(dataloader):
+        for i, (imgs, _) in enumerate(train_loader):
             batch_size = imgs.size(0)
             imgs = imgs.to(device)
 
@@ -65,7 +66,7 @@ def train(epochs, batch_size, lr, beta_1, beta_2, latent_dim, save_path, example
             optimizer_G.step()
 
             if i % 50 == 0:
-                print(f"[Epoch {epoch+1}/{epochs}] [Batch {i}/{len(dataloader)}] "
+                print(f"[Epoch {epoch+1}/{epochs}] [Batch {i}/{len(train_loader)}] "
                       f"[D loss: {d_loss.item():.4f}] [G loss: {g_loss.item():.4f}]")
                 
         # Salva imagens geradas a cada época

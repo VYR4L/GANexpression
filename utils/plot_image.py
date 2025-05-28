@@ -5,7 +5,8 @@ from pathlib import Path
 
 def plot_generated_images(epoch, generator, latent_dim, examples, dim, figsize, save_path):
     generator.eval()
-    z = torch.randn(examples, latent_dim).to("cpu")
+    device = next(generator.parameters()).device
+    z = torch.randn(examples, latent_dim, device=device)
 
     with torch.no_grad():
         gen_imgs = generator(z).cpu()

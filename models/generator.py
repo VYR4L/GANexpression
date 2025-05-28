@@ -9,16 +9,16 @@ class Generator(nn.Module):
             nn.Unflatten(1, (128, 7, 7)),
             nn.Upsample(scale_factor=2),
 
-            nn.Conv2d(128, 128, kernel_size=3, padding='same'),
+            nn.Conv2d(128, 128, kernel_size=3, padding=1),
             nn.ReLU(),
             nn.BatchNorm2d(128, momentum=0.8),
             nn.Upsample(scale_factor=2),
             
-            nn.Conv2d(128, 64, kernel_size=3, padding='same'),
+            nn.Conv2d(128, 64, kernel_size=3, padding=1),
             nn.ReLU(),
             nn.BatchNorm2d(64, momentum=0.8),
 
-            nn.Conv2d(64, 1, kernel_size=3, padding='same'),
+            nn.Conv2d(64, 1, kernel_size=3, padding=1),
             nn.ReLU()
         )
 
