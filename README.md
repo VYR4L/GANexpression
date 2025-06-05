@@ -27,4 +27,4 @@ Esta abordagem é especialmente importante, pois o dataset CK+ apresenta limita�
 
 ## Próximos Passos
 
-- (TODO) Integração do dataset CK+ para treino e validação do modelo focado em expressões faciais reais.
+- Adaptação do modelo para geração de expreções faciais
