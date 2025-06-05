@@ -4,7 +4,7 @@ from train.train import train
 
 def main():
     parser = argparse.ArgumentParser(description="Train a GAN on Fashion MNIST")
-    parser.add_argument("--dataset", type=str, default="FashionMNIST", help="Dataset to use for training")
+    parser.add_argument("--dataset", type=str, default="fer13", help="Dataset to use for training")
     parser.add_argument("--epochs", type=int, default=10, help="Number of epochs to train")
     parser.add_argument("--batch_size", type=int, default=128, help="Batch size for training")
     parser.add_argument("--lr", type=float, default=2.5e-4, help="Learning rate for the optimizer")
@@ -14,10 +14,8 @@ def main():
     parser.add_argument("--save_path", type=str, default="generated_images", help="Path to save generated images")
     parser.add_argument("--examples", type=int, default=100, help="Number of images to generate per epoch")
     parser.add_argument("--dim", type=int, nargs=2, default=(10, 10), help="Dimensions of the generated image grid")
-    parser.add_argument("--figsize", type=float, nargs=2, default=(10, 10), help="Figure size for generated images")
+    parser.add_argument("--figsize", type=float, nargs=2, default=(48, 48), help="Figure size for generated images")
     args = parser.parse_args()
-
-    # TODO: Adaptar o GAN para ser condicional (cGAN)
 
     train(
         dataset=args.dataset,
