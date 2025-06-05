@@ -19,7 +19,7 @@ class Generator(nn.Module):
             nn.BatchNorm2d(64, momentum=0.8),
 
             nn.Conv2d(64, 1, kernel_size=3, padding=1),
-            nn.ReLU()
+            nn.Tanh()
         )
 
     def forward(self, z):
